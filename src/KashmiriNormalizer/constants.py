@@ -1,7 +1,6 @@
-from typing import Dict, str, List
+from typing import Dict, str, List, FrozenSet
 
-# Maps for character normalization
-# Instructions: Paste homoglyph mapping data into this dictionary
+
 KASHMIRI_CHARACTER_MAPPING: Dict[str, List[str]] = {'آ': ['ﺁ', 'ﺂ'],
                                                           'أ': ['ﺃ'],
                                                           'ا': ['ﺍ', 'ﺎ'],
@@ -79,4 +78,6 @@ ENG_URDU_DIGITS_MAP: Dict = {
     '8': ['۸'],
     '9': ['۹']
 }
+
+KASHMIRI_DIACRITICS: FrozenSet = frozenset("\u064e \u0622 \u0670 \u0654 \u0672 \u0650 \u0656 \u0655 \u065f \u064f \u0657 \u065A \u065b".split())
 
