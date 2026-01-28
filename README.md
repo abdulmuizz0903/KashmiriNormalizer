@@ -39,7 +39,7 @@ from KashmiriNormalizer import KashmiriNormalizer
 # Initialize the normalizer
 kn = KashmiriNormalizer()
 
-text = "مےٚ چُھ لۄکچارٕ پٮ۪ٹھٕ یہٕ عادت" # Example text with irregular spacing
+text = "مےٚ چُھ لۄکچارٕ پٮ۪ٹھٕ یہٕ عادت" # Example text
 
 # Normalize the text
 cleaned_text = kn.normalize(text)
