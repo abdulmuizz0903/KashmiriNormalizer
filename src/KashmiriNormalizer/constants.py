@@ -1,4 +1,4 @@
-from typing import Dict, str, List, FrozenSet
+from typing import Dict, List, FrozenSet
 
 
 KASHMIRI_CHARACTER_MAPPING: Dict[str, List[str]] = {'آ': ['ﺁ', 'ﺂ'],
@@ -62,11 +62,25 @@ KASHMIRI_CHARACTER_MAPPING: Dict[str, List[str]] = {'آ': ['ﺁ', 'ﺂ'],
                                                           '٫': [],
                                                           '،': [],
                                                           'لا': ['ﻻ', 'ﻼ'],
-                                                          '': ['ـ']
-
+                                                          '': ['ـ'],
+                                                          'ژ':['ـژ', 'ـژ'],
+                                                          'ؠ':['ـؠ','\u06ea', '\u066e\u06ea', 'ۍ', 'ؠـ', 'ـؠـ', ],
+                                                          'ۄ':['\u06c5'],
+                                                          ' ' : ['\u200C'] # NOT A CHARACTER, HANDLING ZWNJ by Replacing with space
+                                                          
+                                                          
                                                           }
 
-ENG_URDU_DIGITS_MAP: Dict = {
+PUNCTUATION_MAP: Dict[str, List[str]] = {
+    '"': ['„', '“', '”', "''", '´´'],
+    '-': ['–'],
+    ' - ': ['—'],
+    "'": ['´', '‘', '‚', '’'],
+    '...': ['…'],
+    
+}
+
+ENG_KASHMIRI_DIGITS_MAP: Dict = {
     '0': ['۰'],
     '1': ['۱'],
     '2': ['۲'],
@@ -79,5 +93,19 @@ ENG_URDU_DIGITS_MAP: Dict = {
     '9': ['۹']
 }
 
-KASHMIRI_DIACRITICS: FrozenSet = frozenset("\u064e \u0622 \u0670 \u0654 \u0672 \u0650 \u0656 \u0655 \u065f \u064f \u0657 \u065A \u065b".split())
+KASHMIRI_ENG_DIGITS_MAP: Dict = {
+    '۰': ['0'],
+    '۱': ['1'],
+    '۲': ['2'],
+    '۳': ['3'],
+    '۴': ['4'],
+    '۵': ['5'],
+    '۶': ['6'],
+    '۷': ['7'],
+    '۸': ['8'],
+    '۹': ['9']
+}
+KASHMIRI_DIACRITICS: FrozenSet = frozenset("\u064e \u0670 \u0654 \u0650 \u0656 \u0655 \u065f \u064f \u0657 \u065A \u065b".split())
+
+KASHMIRI_PUNCTUATIONS: FrozenSet[str] = frozenset("؛ ، ٫  ؟ ۔ ٪".split())
 
