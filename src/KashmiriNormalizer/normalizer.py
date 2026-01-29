@@ -73,6 +73,7 @@ class KashmiriNormalizer:
         return re.sub(pattern, "ۍ", text)
     
     def _removeDiacritics(self, text: str) -> str:
+        """Removes all the diacritics from the input text"""
         REP_MAP = {"": list(KASHMIRI_DIACRITICS)}
         return self._replace(text, REP_MAP)
     
