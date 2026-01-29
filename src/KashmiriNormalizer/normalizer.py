@@ -2,7 +2,8 @@ from typing import List, Dict
 from .constants import (
     KASHMIRI_CHARACTER_MAPPING,
     KASHMIRI_PUNCTUATIONS, PUNCTUATION_MAP,
-    KASHMIRI_ENG_DIGITS_MAP, ENG_KASHMIRI_DIGITS_MAP)
+    KASHMIRI_ENG_DIGITS_MAP, ENG_KASHMIRI_DIGITS_MAP, 
+    KASHMIRI_DIACRITICS)
 import regex as re
 
 class KashmiriNormalizer:
@@ -71,7 +72,11 @@ class KashmiriNormalizer:
         pattern = fr"\b{t}|{t}\b"
         return re.sub(pattern, "ۍ", text)
     
-    def normalize(self, text: str) -> str:
+    def _removeDiacritics(self, text: str) -> str:
+        REP_MAP = {"": list(KASHMIRI_DIACRITICS)}
+        return self._replace(text, REP_MAP)
+    
+    def normalize(self, text: str, removeDiacritics: bool) -> str:
         """
         1. Canonicalizes the text
         2. Replaces Kashmiri digits with English 
@@ -81,6 +86,7 @@ class KashmiriNormalizer:
         NOTE: For post processing use PostNormalize method
         Args:
             text (str): The input text to normalize.
+            removeDiacritics (bool): Do you want to remove Diacritics or not?
             
         Returns:
             str: The normalized text.
@@ -88,6 +94,8 @@ class KashmiriNormalizer:
         text = self._canonicalize(text)
         text = self._replace_digits(text)
         text = self._punctuation_spaces(text)
+        if removeDiacritics:
+            text = self._removeDiacritics(text)
         
         return text
 
