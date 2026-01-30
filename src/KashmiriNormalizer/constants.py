@@ -105,7 +105,7 @@ KASHMIRI_ENG_DIGITS_MAP: Dict = {
     '۸': ['8'],
     '۹': ['9']
 }
-KASHMIRI_DIACRITICS: FrozenSet = frozenset("\u064e \u0670 \u0654 \u0650 \u0656 \u0655 \u065f \u064f \u0657 \u065A \u065b".split())
+KASHMIRI_DIACRITICS: FrozenSet[str] = frozenset("\u064e \u0670 \u0654 \u0650 \u0656 \u0655 \u065f \u064f \u0657 \u065A \u065b".split())
 
 KASHMIRI_PUNCTUATIONS: FrozenSet[str] = frozenset("؛ ، ٫  ؟ ۔ ٪".split())
 

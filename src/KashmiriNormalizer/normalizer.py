@@ -77,7 +77,7 @@ class KashmiriNormalizer:
         REP_MAP = {"": list(KASHMIRI_DIACRITICS)}
         return self._replace(text, REP_MAP)
     
-    def normalize(self, text: str, removeDiacritics: bool) -> str:
+    def normalize(self, text: str, removeDiacritics: bool = False) -> str:
         """
         1. Canonicalizes the text
         2. Replaces Kashmiri digits with English 
