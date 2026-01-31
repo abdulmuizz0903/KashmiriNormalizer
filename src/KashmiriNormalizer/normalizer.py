@@ -70,7 +70,7 @@ class KashmiriNormalizer:
         
         t = re.escape('ؠ')
         pattern = fr"\b{t}|{t}\b"
-        return re.sub(pattern, "ۍ", text)
+        return re.sub(pattern, "ۍ", text) # Because in Kashmiri writing ؠ changes to ۍ at final position
     
     def _removeDiacritics(self, text: str) -> str:
         """Removes all the diacritics from the input text"""
