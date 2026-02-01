@@ -73,7 +73,10 @@ class KashmiriNormalizer:
         return re.sub(pattern, "ۍ", text) # Because in Kashmiri writing ؠ changes to ۍ at final position
     
     def _removeDiacritics(self, text: str) -> str:
-        """Removes all the diacritics from the input text"""
+        """
+        Removes all the diacritics from the input text
+        NOTE: According to linguists diacritics are important in kashmiri unlike urdu, so don't remove them, this function is just to perform tests and for research purposes
+        """
         REP_MAP = {"": list(KASHMIRI_DIACRITICS)}
         return self._replace(text, REP_MAP)
     
