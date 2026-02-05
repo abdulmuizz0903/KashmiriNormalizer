@@ -64,10 +64,10 @@ KASHMIRI_CHARACTER_MAPPING: Dict[str, List[str]] = {'آ': ['ﺁ', 'ﺂ'],
                                                           'لا': ['ﻻ', 'ﻼ'],
                                                           '': ['ـ'],
                                                           'ژ':['ـژ', 'ـژ'],
-                                                          'ؠ':['ـؠ','\u06ea', '\u066e\u06ea', 'ۍ', 'ؠـ', 'ـؠـ', ],
+                                                          'ؠ':['ـؠ','\u06ea', '\u066e\u06ea', 'ؠـ', 'ـؠـ', ],
                                                           'ۄ':['\u06c5'],
-                                                          ' ' : ['\u200C'] # NOT A CHARACTER, HANDLING ZWNJ by Replacing with space
-                                                          
+                                                          ' ' : ['\u200C'], # NOT A CHARACTER, HANDLING ZWNJ by Replacing with space
+                                                          'ۍ' : []
                                                           
                                                           }
 
