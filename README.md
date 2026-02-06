@@ -8,7 +8,6 @@ A Python library designed for normalizing Kashmiri text (Persio-Arabic script). 
 - **Code standardization**: Handles common inconsistencies in Kashmiri typing.
 - **Punctuation & Spacing**: Automatically removes spaces before punctuation marks and ensures a single space follows them.
 - **Digit Normalization**: Converts Kashmiri (Persio-Arabic) digits to standard English (Latin) digits for consistency.
-- **Post-Processing Rules**: specific rules for writing conventions, such as handling final forms of specific characters (e.g., 'ؠ' to 'ۍ' at word boundaries).
 
 ## Installation
 
@@ -29,7 +28,7 @@ Ensure you have Python 3.8 or higher installed.
 
 ## Usage
 
-### 1. Pre-processing (Normalization)
+### Normalization
 
 The `normalize` method is intended for cleaning text data. It performs canonicalization, digit conversion, and punctuation fixing.
 
@@ -46,17 +45,7 @@ cleaned_text = kn.normalize(text)
 print(cleaned_text)
 ```
 
-### 2. Post-processing
-
-The `PostNormalize` method applies all normalization rules plus additional linguistic corrections specific to Kashmiri writing conventions (e.g., specific rules for the letter 'Ye'). This is useful for final text output or display.
-
-```python
-# Post-process the text
-final_text = kn.PostNormalize(text)
-print(final_text)
-```
-
-### 3. Digit Handling
+### Digit Handling
 
 The library automatically converts Kashmiri digits to English digits during normalization.
 

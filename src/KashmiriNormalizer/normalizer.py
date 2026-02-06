@@ -65,12 +65,12 @@ class KashmiriNormalizer:
         if not toEnglish:
             return self._replace(text, KASHMIRI_ENG_DIGITS_MAP)
         return self._replace(text, ENG_KASHMIRI_DIGITS_MAP)
-    def _handlePlatYe(self, text: str) -> str:
-        """Replaces ؠ with ۍ when it occurs at the final position of words to align with Kashmiri writing rules"""
+    # def _handlePlatYe(self, text: str) -> str:
+    #     """Replaces ؠ with ۍ when it occurs at the final position of words to align with Kashmiri writing rules"""
         
-        t = re.escape('ؠ')
-        pattern = fr"\b{t}|{t}\b"
-        return re.sub(pattern, "ۍ", text) # Because in Kashmiri writing ؠ changes to ۍ at final position
+    #     t = re.escape('ؠ')
+    #     pattern = fr"\b{t}|{t}\b"
+    #     return re.sub(pattern, "ۍ", text) # Because in Kashmiri writing ؠ changes to ۍ at final position
     
     def _removeDiacritics(self, text: str) -> str:
         """
@@ -87,7 +87,6 @@ class KashmiriNormalizer:
         3. Handles spaces before and after punctuations
         
         Ideal for Pre-Processing of ML models.
-        NOTE: For post processing use PostNormalize method
         Args:
             text (str): The input text to normalize.
             removeDiacritics (bool): Do you want to remove Diacritics or not?
@@ -103,21 +102,4 @@ class KashmiriNormalizer:
         
         return text
 
-    def PostNormalize(self, text: str) -> str:
-        """
-        1. Canonicalizes the text
-        2. Replaces Kashmiri digits with English 
-        3. Handles spaces before and after punctuations
-        4. Modifies the text to follow Kashmiri writing rules
-        
-        Ideal for Post-Processing of ML models.
-        Args:
-            text (str): The input text
-
-        Returns:
-            str: The normalized text
-        """
-        text = self.normalize(text)
-        text = self._handlePlatYe(text)
-        return text
         
