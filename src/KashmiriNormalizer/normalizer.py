@@ -8,7 +8,7 @@ import regex as re
 
 class KashmiriNormalizer:
     def __init__(self):
-        """Initialize the normalizer."""
+        """Initialize the normalizer"""
         pass
 
     def _replace(self, text: str, charMap: Dict[str, List[str]]) -> str:
