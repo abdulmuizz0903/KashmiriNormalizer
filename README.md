@@ -11,9 +11,15 @@ A Python library designed for normalizing Kashmiri text (Persio-Arabic script). 
 
 ## Installation
 
-### From Source
-
 Ensure you have Python 3.8 or higher installed.
+
+You can install the package directly from GitHub:
+
+```bash
+pip install git+https://github.com/abdulmuizz0903/KashmiriNormalizer.git
+```
+
+<!-- ### For Development
 
 1. Clone the repository:
    ```bash
@@ -24,7 +30,7 @@ Ensure you have Python 3.8 or higher installed.
 2. Install the package locally:
    ```bash
    pip install .
-   ```
+   ``` -->
 
 ## Usage
 
@@ -53,6 +59,30 @@ The library automatically converts Kashmiri digits to English digits during norm
 digit_text = "١٢٣٤٥"
 print(kn.normalize(digit_text)) 
 # Output will have standardized English digits
+```
+
+### Text-to-Speech (TTS) Normalization
+
+The library includes a specialized `TTSNormalizer` class tailored for Text-to-Speech tasks. This class extends the base normalization set with:
+
+- **Preserves Diacritics**: Does not remove diacritics, which are crucial for correct pronunciation in Kashmiri.
+- **Digit Expansion**: Converts digits (both Kashmiri and English) into their Kashmiri word forms (e.g., "1" -> "اکھ").
+  - *Note: Requires populating the `WORD_TO_DIGIT_MAP` in `constants.py`.*
+- **Plat Ye Handling**: Converts `ؠ` to `ۍ` at the end of words to align with standard writing rules.
+- **Character Filtering**: Removes any characters not present in the allowed Kashmiri character set (`ALL_CHARACTERS`), ensuring clean input for TTS models.
+
+```python
+from KashmiriNormalizer import TTSNormalizer
+
+# Initialize the TTS normalizer
+tts_norm = TTSNormalizer()
+
+text = "مےٚ چُھ 1 لۄکچارٕ پٮ۪ٹھٕ یہٕ عادت۔" 
+
+# Normalize for TTS
+tts_text = tts_norm.normalize(text)
+print(tts_text)
+# Output will have diacritics preserved, digits expanded to words, and non-Kashmiri chars removed.
 ```
 
 ## Dependencies

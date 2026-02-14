@@ -109,3 +109,25 @@ KASHMIRI_DIACRITICS: FrozenSet[str] = frozenset("\u064e \u0670 \u0654 \u0650 \u0
 
 KASHMIRI_PUNCTUATIONS: FrozenSet[str] = frozenset("؛ ، ٫  ؟ ۔ ٪".split())
 
+# Characters, Diacritics, Digits (Both sets), and Punctuations suitable for TTS vocabulary
+ALL_CHARACTERS: FrozenSet[str] = frozenset(
+    list(KASHMIRI_CHARACTER_MAPPING.keys()) + 
+    list(KASHMIRI_DIACRITICS) + 
+    list(KASHMIRI_PUNCTUATIONS) +
+    list(ENG_KASHMIRI_DIGITS_MAP.keys()) +
+    list(PUNCTUATION_MAP.keys())
+)
+
+WORD_TO_DIGIT_MAP: Dict[str, List[str]] = {
+    'صفرٕ': ['0'],
+    'اکھ': ['1'],
+    'زٕ': ['2'],
+    'ترٛےٚ': ['3'],
+    'ژور': ['4'],
+    'پانژھ': ['5'],
+    'شیٚیہ': ['6'],
+    'ستھ': ['7'],
+    'ٲٹھ': ['8'],
+    'نو': ['9']
+}
+

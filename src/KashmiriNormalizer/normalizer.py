@@ -3,7 +3,7 @@ from .constants import (
     KASHMIRI_CHARACTER_MAPPING,
     KASHMIRI_PUNCTUATIONS, PUNCTUATION_MAP,
     KASHMIRI_ENG_DIGITS_MAP, ENG_KASHMIRI_DIGITS_MAP, 
-    KASHMIRI_DIACRITICS)
+    KASHMIRI_DIACRITICS, WORD_TO_DIGIT_MAP, ALL_CHARACTERS)
 import regex as re
 
 class KashmiriNormalizer:
@@ -102,4 +102,50 @@ class KashmiriNormalizer:
         
         return text
 
+
+class TTSNormalizer(KashmiriNormalizer):
+    def __init__(self):
+        """Initialize the TTS normalizer."""
+        super().__init__()
+
+    def _convert_digits_to_words(self, text: str) -> str:
+        """Converts digits to their word forms"""
+        return self._replace(text, WORD_TO_DIGIT_MAP)
+
+    def _handlePlatYe(self, text: str) -> str:
+        """Replaces ؠ with ۍ when it occurs at the final position of words to align with Kashmiri writing rules"""
         
+        t = re.escape('ؠ')
+        pattern = fr"\\b{t}|{t}\\b"
+        return re.sub(pattern, "ۍ", text) # Because in Kashmiri writing ؠ changes to ۍ at final position
+
+    def _remove_non_kashmiri_characters(self, text: str) -> str:
+        """Removes all the characters that are not in Kashmiri Language"""
+        return "".join([char for char in text if char in ALL_CHARACTERS or char == '\n'])
+
+    def normalize(self, text: str) -> str:
+        """
+        Normalizes text specifically for TTS tasks.
+        1. Canonicalizes the text
+        2. Handles Plat Ye (ؠ -> ۍ at end of words)
+        3. Replaces Kashmiri digits with English digits
+        4. Converts English digits to Kashmiri words
+        5. Handles spaces before and after punctuations
+        6. Preserves diacritics (always)
+        
+        Args:
+            text (str): The input text to normalize.
+            
+        Returns:
+            str: The normalized text.
+        """
+        text = self._canonicalize(text)
+        text = self._handlePlatYe(text)
+        text = self._replace_digits(text)
+        text = self._convert_digits_to_words(text)
+        text = self._punctuation_spaces(text)
+        text = self._remove_non_kashmiri_characters(text)
+        
+        
+        return text
+
