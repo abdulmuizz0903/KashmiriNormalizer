@@ -40,13 +40,15 @@ class KashmiriNormalizer:
     def _punctuation_spaces(self, text: str) -> str:
         """Removes spaces before punctuations and add spaces after them"""
         
+        escaped_puncts = "".join([re.escape(p) for p in KASHMIRI_PUNCTUATIONS])
+        
         # Add spaces after punctuations, numbers and some special characters
         _SPACE_AFTER_PUNCTUATIONS_RE = re.compile(
-            r"(?<=[" + "".join(KASHMIRI_PUNCTUATIONS) + "])(?=[^" + "".join(KASHMIRI_PUNCTUATIONS) + "0-9 \n])",
+            r"(?<=[" + escaped_puncts + r"])(?=[^" + escaped_puncts + r"0-9 \n])",
             flags=re.U | re.M | re.I)
         
         # Remove whitespaces before punctuations
-        _REMOVE_SPACE_BEFORE_PUNCTUATIONS_RE = re.compile(r'\s+([' + "".join(KASHMIRI_PUNCTUATIONS) + '])',
+        _REMOVE_SPACE_BEFORE_PUNCTUATIONS_RE = re.compile(r'\s+([' + escaped_puncts + r'])',
                                                         flags=re.U | re.M | re.I)
         
         text = _SPACE_AFTER_PUNCTUATIONS_RE.sub(' ', text)
@@ -116,7 +118,7 @@ class TTSNormalizer(KashmiriNormalizer):
         """Replaces ؠ with ۍ when it occurs at the final position of words to align with Kashmiri writing rules"""
         
         t = re.escape('ؠ')
-        pattern = fr"\\b{t}|{t}\\b"
+        pattern = fr"\b{t}|{t}\b"
         return re.sub(pattern, "ۍ", text) # Because in Kashmiri writing ؠ changes to ۍ at final position
 
     def _remove_non_kashmiri_characters(self, text: str) -> str:
