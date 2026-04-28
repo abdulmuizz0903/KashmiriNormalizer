@@ -87,7 +87,7 @@ print(tts_text)
 
 ## Dependencies
 
-- [regex](https://pypi.org/project/regex/): Used for advanced Unicode string handling.
+- [regex](https://pypi.org/project/regex/): Used for advanced Unicode string handling
 
 ## Development
 
