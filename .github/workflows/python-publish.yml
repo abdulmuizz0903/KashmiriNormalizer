@@ -14,7 +14,7 @@ jobs:
           python-version: "3.x"
       - run: pip install build twine
       - run: python -m build
-      - run: twine upload dist/*
+      - run: twine upload --verbose dist/*
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
