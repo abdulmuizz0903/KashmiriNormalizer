@@ -16,7 +16,7 @@ Ensure you have Python 3.8 or higher installed.
 You can install the package directly from GitHub:
 
 ```bash
-pip install git+https://github.com/abdulmuizz0903/KashmiriNormalizer.git
+pip install KashmiriNormalizer
 ```
 
 <!-- ### For Development

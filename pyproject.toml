@@ -5,8 +5,22 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "KashmiriNormalizer"
 version = "0.1.0"
+description = "A Python library for normalizing Kashmiri text (Persio-Arabic script)"
+readme = "README.md"
 requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+  { name = "Abdul Muizz", email = "your@email.com" }
+]
+keywords = ["kashmiri", "nlp", "normalization", "text-processing"]
+
 dependencies = ["regex"]
+
+[project.urls]
+Homepage = "https://github.com/abdulmuizz0903/KashmiriNormalizer"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools]
+license-files = []
